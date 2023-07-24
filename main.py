@@ -27,7 +27,7 @@ def login():
     
     if username == 'admin' and password == 'admin':
         session["username"] = username 
-        session["admin"] = "true"
+        session["admin"] = "true" 
         return redirect("/")
 
     else:
