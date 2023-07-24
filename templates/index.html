@@ -1,26 +1,2 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Garage Sale App</title>
-    <style>
-        body {background-color:cadetblue;}     
-    </style>
-    
-</head>
-<body>
-    <h1 style="color:gainsboro;">Welcome to the local Garage Sale App</h1>
-    <a href="/add">Add Item</a>
-
-    <table>
-        <thead>
-            <tr>
-                <th> Title </th>
-                <th> Description </th>
-                <th> Price </th>
-                <th> Sold </th>
-            </tr>
-        </thead>
-    </table>
-    
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}

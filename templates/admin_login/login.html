@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+{{ super() }}
+<div id="login">
+<link rel="stylesheet" href="/static/css/style.css"> 
+<h1>Login</h1>
+<form action="/adminlogin" method="post">
+    <label for="username">Username</label>
+    <br>
+    <input type="text" name="username" value="{{username}}">
+    <br>
+    <label for="password">Password</label>
+    <br>
+    <input type="password" name="password" value="{{password}}">
+    <br>
+    {% if eroare %}
+        <br>
+        <p id="eroare">{{eroare}}</p>
+    {% endif %}
+    <br>
+    <input type="submit" name="login" value="Login">
+</form>
+</div>
+{% endblock %}
