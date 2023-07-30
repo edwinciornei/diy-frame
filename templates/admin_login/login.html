@@ -4,7 +4,7 @@
 {{ super() }}
 <div id="login">
 <link rel="stylesheet" href="/static/css/style.css"> 
-<h1>Login</h1>
+<h1 id="center">Sign Up</h1>
 <form action="/adminlogin" method="post">
     <label for="username">Username</label>
     <br>
@@ -14,12 +14,12 @@
     <br>
     <input type="password" name="password" value="{{password}}">
     <br>
-    {% if eroare %}
+    {% if error %}
         <br>
-        <p id="eroare">{{eroare}}</p>
+        <p id="error">{{error}}</p>
     {% endif %}
     <br>
-    <input type="submit" name="login" value="Login">
+    <input id="submit" type="submit" name="login" value="Sign Up">
 </form>
 </div>
 {% endblock %}
