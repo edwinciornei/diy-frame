@@ -2,24 +2,30 @@
 {% block title %}Home{% endblock %}
 {% block body %}
 {{ super() }}
-<div id="login">
-<link rel="stylesheet" href="/static/css/style.css"> 
-<h1 id="center">Sign Up</h1>
-<form action="/adminlogin" method="post">
-    <label for="username">Username</label>
+<div class="in-out-up">
+<link rel="stylesheet" href="/static/css/style.css">
+{% if session["admin"] %}
     <br>
-    <input type="text" name="username" value="{{username}}">
-    <br>
-    <label for="password">Password</label>
-    <br>
-    <input type="password" name="password" value="{{password}}">
-    <br>
-    {% if error %}
+    <h1>Welcome Admin</h1>
+    <a href="/logout">Logout</a>
+{% else %} 
+    <h1>Sign Up</h1>
+    <form action="/adminlogin" method="post">
+        <label for="username">Username</label>
         <br>
-        <p id="error">{{error}}</p>
-    {% endif %}
-    <br>
-    <input id="submit" type="submit" name="login" value="Sign Up">
-</form>
+        <input type="text" name="username" value="{{username}}">
+        <br>
+        <label for="password">Password</label>
+        <br>
+        <input type="password" name="password" value="{{password}}">
+        <br>
+        {% if error %}
+            <br>
+            <p id="error">{{error}}</p>
+        {% endif %}
+        <br>
+        <input type="submit" name="login" value="Sign Up">
+    </form>
+{% endif %}
 </div>
 {% endblock %}

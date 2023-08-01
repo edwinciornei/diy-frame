@@ -2,10 +2,8 @@
 {% block title %}{% endblock %}
 {% block body %}
 {{ super() }}
-<div class="file-uploader">
-<link rel="stylesheet" href="/static/css/style.css"> 
-    <a href="/logout">Logout</a>
-    <h1>Welcome Admin</h1>
+<div class="in-out-up">
+<link rel="stylesheet" href="/static/css/style.css">
     <form action="/upload" method="POST" enctype="multipart/form-data">
         <label for="file">File</label>
         <input type="file" name="file">

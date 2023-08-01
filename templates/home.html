@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <title>Modern Design Navbar</title>
+  <title>Garage Sale</title>
   <style>
     /* Reset some default styles */
     body {
@@ -74,6 +74,7 @@
         margin-left: 0;
         margin-bottom: 8px;
       }
+      
     }
   </style>
 </head>
@@ -83,11 +84,23 @@
       <a href="/" class="navbar-logo">Garage Sale</a>
       <ul class="navbar-menu">
         <li><a href="/">Home</a></li>
-        <li><a href="/contact">Contact</a></li>
         <li><a href="/upload">Upload</a></li>
         <li><a href="/adminlogin">Admin Login</a></li>
       </ul>
     </div>
   </nav>
+<div class="cotainer mt-1">
+  <div class="row">
+      {% for image in images %}
+        <div class="col-3 col-md-4 col-sm-6">
+        <link rel="stylesheet" href="/static/css/style.css">
+          <img class="thumbnails" src="/home/{{ image.sha256 }}">
+          {% if session["admin"] %}
+          <button id="del-button">Delete</button>
+          {% endif %}
+        </div>
+      {% endfor %}
+  </div>
+</div>
 </body>
 </html>

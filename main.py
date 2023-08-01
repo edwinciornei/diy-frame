@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, send_file
 from pymongo import MongoClient
 from hashlib import sha256
+import io
 
 
 app = Flask(__name__)
@@ -14,9 +15,8 @@ db_items = db.items
 # ROUTES
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    if not session:
-        return redirect("/adminlogin", "You need to login first")
-    return render_template('home.html')
+    images_list = list(db_items.find())
+    return render_template("home.html", images=images_list)
 
 # CONTACT
 @app.route('/contact',  methods=['GET', 'POST'])
@@ -50,7 +50,7 @@ def login():
     if username == 'admin' and password == 'admin':
         session["username"] = username 
         session["admin"] = "true" 
-        return redirect("/")
+        return redirect("/adminlogin")
 
     else:
         return render_template(
@@ -75,12 +75,20 @@ def logout():
         session.pop('admin')
 
     return redirect("/adminlogin")
+@app.route("/home/<hash_image>", methods=["GET"])
+def only_image(hash_image):
+    image_from_db = db_items.find_one({"sha256": hash_image})
+    
+    if image_from_db:
+        return send_file(io.BytesIO(image_from_db['image_data']), 'image/jpg')
+    if not image_from_db:
+        return "Not found", 404
 
 
 # UPLOAD
 @app.route("/upload", methods=['GET', 'POST'])
 @requires_admin
-def imagine():
+def galery():
     if request.method == 'GET':
         return render_template('upload.html')
     
@@ -94,10 +102,12 @@ def imagine():
         db_items.insert_one({
             'name': origin_name,
             'sha256': hash_image,
-            'date': data
+            'image_data': data
             
         })
-    return render_template("upload.html", img_ids = [img['sha256'] for img in db_items])
+    images_list = [doc for doc in db_items.find()]
+    return render_template("home.html", img_ids = [img['sha256'] for img in images_list])
+
 
 if __name__ == "__main__":
     app.run('0.0.0.0', port=80, debug=True)
