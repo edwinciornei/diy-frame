@@ -9,53 +9,108 @@ body {
 #del-button {
     position: relative;
     left: 40px;
-    right: 10px;
     color: #007bff;
     text-decoration: none;
 }
 
-/* Style for file uploader */
-.in-out-up {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+/* Generic container styles */
+.in-out-up, .contact-form {
     position: absolute;
-    top: 50%;
     left: 50%;
+    top: 50%;
     transform: translate(-50%, -50%);
-    padding: 1%;
+    padding: 2%;
     border: 1px solid grey;
     border-radius: 5px;
-    box-shadow: 5px 5px 5px black;
+    box-shadow: 2px 2px 2px black;
 }
 
-/* Styles for the logout link */
-.in-out-up a {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: #007bff;
-    text-decoration: none;
+.in-out-up {
+    text-align: left;
+    width: 25%;
+    background-color: #fff;
 }
 
+.contact-form {
+    width: 40%;
+}
 
-.in-out-up input[type="submit"] {
+/* Input groups */
+.input-group {
+    width: 95%;
+    margin-bottom: 10px;
+}
+
+.input-group-price {
+    width: 5%;
+    margin-bottom: 10px;
+}
+
+.input-group label,
+.input-group input,
+.input-group textarea {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.input-group textarea {
+    resize: vertical;
+    min-height: 60px;
+}
+
+/* Image styles */
+.thumbnails {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 200px;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+
+.image-description, 
+.image-price {
+    margin-top: 10px;
+    text-align: left;
+    padding: 5px 0;
+}
+
+.image-description {
+    font-size: 1em;
+}
+
+.image-price {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Card */
+.card {
+    border: 1px solid grey;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px black;
+}
+
+/* Submit button */
+input[type="submit"] {
     background-color: #007bff;
     color: #fff;
     border: none;
-    padding: 5px 10px;
+    padding: 5px 15px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s ease-in-out;
 }
 
-.thumbnails {
-    width: 60%;
-    height: 60%; /* adjust the height as needed */
-    object-fit: cover;
-    margin-bottom: 40px;
-    margin-left: 40px;
-    margin-top: 40px;
-    margin-right: 40px;
+input[type="submit"]:hover {
+    background-color: #0056b3;
 }

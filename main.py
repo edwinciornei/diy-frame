@@ -21,7 +21,7 @@ def home():
 # CONTACT
 @app.route('/contact',  methods=['GET', 'POST'])
 def contact():
-    return 'Contact'
+    return render_template('contact.html')
 
 
 # WRAPPER
@@ -75,6 +75,8 @@ def logout():
         session.pop('admin')
 
     return redirect("/adminlogin")
+
+
 @app.route("/home/<hash_image>", methods=["GET"])
 def only_image(hash_image):
     image_from_db = db_items.find_one({"sha256": hash_image})
@@ -95,18 +97,22 @@ def galery():
     origin_name = request.files['file'].filename
     data = request.files['file'].stream.read()
     hash_image = sha256(data).hexdigest()
-
+    description = request.form['description'] 
+    price = request.form['price']
+    
     image_from_db = db_items.find_one({"sha256": hash_image})
     
     if not image_from_db:
         db_items.insert_one({
             'name': origin_name,
             'sha256': hash_image,
-            'image_data': data
-            
+            'image_data': data,
+            'description': description,            
+            'price': price,
         })
+        
     images_list = [doc for doc in db_items.find()]
-    return render_template("home.html", img_ids = [img['sha256'] for img in images_list])
+    return render_template("home.html",img_ids = [img['sha256'] for img in images_list])
 
 
 if __name__ == "__main__":

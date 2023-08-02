@@ -2,12 +2,24 @@
 {% block title %}{% endblock %}
 {% block body %}
 {{ super() }}
-<div class="in-out-up">
-<link rel="stylesheet" href="/static/css/style.css">
+<div class="contact-form">
+    <link rel="stylesheet" href="/static/css/style.css">
     <form action="/upload" method="POST" enctype="multipart/form-data">
-        <label for="file">File</label>
-        <input type="file" name="file">
+        <div class="input-group">
+            <label for="file">Select a photo:</label>
+            <input type="file" name="file" required>
+        </div>
 
+        <div class="input-group">
+            <label for="description">Decription:</label>
+            <textarea name="description" required></textarea>
+        </div>
+
+        <div class="input-group-price">
+            <label for="price">Price:</label>
+            <input type="text" name="price" required>
+        </div>
+        <br>
         <input type="submit" value="Upload">
     </form>
 </div>  
