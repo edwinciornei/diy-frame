@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="/static/css/style.css">
-  <title>Garage Sale</title>
+  <title>Home</title>
   <style>
     /* Reset some default styles */
     body {
@@ -17,7 +17,7 @@
     /* Navbar styles */
     nav {
       background-color: #333;
-      padding: 50px 50px;
+      padding: 30px 50px;
     }
 
     .navbar-container {
@@ -85,10 +85,14 @@
     <div class="navbar-container">
       <a href="/" class="navbar-logo">Garage Sale</a>
       <ul class="navbar-menu">
-        <li><a href="/">Home</a></li>
-        <li><a href="/contact">Contact</a></li>
-        <li><a href="/upload">Upload</a></li>
-        <li><a href="/adminlogin">Admin Login</a></li>
+        <li><a href="/">🏠Home</a></li>
+        <li><a href="/contact">✉️Contact</a></li>
+        {% if session['admin'] %}
+          <li><a href="/upload">⬆Upload</a></li>
+        {% else %}
+          <li><a href="/upload">🔐Upload</a></li>
+        {% endif %}
+        <li><a href="/adminlogin">🔐Admin Login</a></li>
       </ul>
     </div>
   </nav>
@@ -96,16 +100,18 @@
     <div class="row">
         {% for image in images %}
           <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card h-100">
-              <img class="card-img-top thumbnails" src="/home/{{ image.sha256 }}" alt="Image Description">
-              <div class="card-body">
-                <p class="card-text image-description">{{ image.description }}</p>
-                <p class="card-text image-price">${{ image.price }}</p>
+            <a href="/contact?subject={{ image.description }}&price={{ image.price }}" class="text-decoration-none text-dark">
+              <div class="card h-100">
+                <img class="card-img-top thumbnails" src="/home/{{ image.sha256 }}" alt="Image Description">
+                <div class="card-body">
+                  <p class="card-text image-description">{{ image.description }}</p>
+                  <p class="card-text image-price">${{ image.price }}</p>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         {% endfor %}
     </div>
-  </div>
+</div>
 </body>
 </html>

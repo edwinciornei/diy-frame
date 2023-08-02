@@ -13,7 +13,6 @@ body {
     text-decoration: none;
 }
 
-/* Generic container styles */
 .in-out-up, .contact-form {
     position: absolute;
     left: 50%;
@@ -35,9 +34,14 @@ body {
     width: 40%;
 }
 
-/* Input groups */
+/* Added this to make 'name' and 'email' sit on the same line */
+.input-row {
+    display: flex;
+    justify-content: space-between;
+}
+
 .input-group {
-    width: 95%;
+    width: 48%; /* Adjusted to make space for two input groups side by side */
     margin-bottom: 10px;
 }
 
@@ -67,12 +71,11 @@ body {
     min-height: 60px;
 }
 
-/* Image styles */
 .thumbnails {
     width: 100%;
     height: auto;
     object-fit: cover;
-    max-height: 200px;
+    max-height: 190px;
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
 }
@@ -93,14 +96,12 @@ body {
     color: #333;
 }
 
-/* Card */
 .card {
     border: 1px solid grey;
     border-radius: 5px;
     box-shadow: 2px 2px 2px black;
 }
 
-/* Submit button */
 input[type="submit"] {
     background-color: #007bff;
     color: #fff;

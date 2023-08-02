@@ -21,7 +21,9 @@ def home():
 # CONTACT
 @app.route('/contact',  methods=['GET', 'POST'])
 def contact():
-    return render_template('contact.html')
+    subject = request.args.get('subject', '')
+    price = request.args.get('price', '')
+    return render_template('contact.html', subject=subject, price=price)
 
 
 # WRAPPER
