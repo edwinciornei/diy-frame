@@ -71,7 +71,7 @@ def unauthorized():
     return "Unauthorized"
 
 
-# LOGOUT      
+# LOGOUT
 @app.route('/logout')
 @requires_admin
 def logout():
@@ -111,12 +111,13 @@ def galery():
             'name': origin_name,
             'sha256': hash_image,
             'image_data': data,
-            'description': description,           
+            'description': description,
             'price': price,
         })
 
     images_list = [doc for doc in db_items.find()]
-    return render_template("home.html", img_ids = [img['sha256'] for img in images_list])
+    return render_template("home.html",
+                           img_ids=[img['sha256'] for img in images_list])
 
 
 if __name__ == "__main__":
