@@ -12,6 +12,7 @@ cl = MongoClient('mongodb://localhost:27017')
 db = cl.garage_sale
 db_items = db.items
 
+
 # ROUTES
 @app.route('/', methods=['GET', 'POST'])
 def home():
