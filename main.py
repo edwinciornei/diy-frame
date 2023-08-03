@@ -19,6 +19,7 @@ def home():
     images_list = list(db_items.find())
     return render_template("home.html", images=images_list)
 
+
 # CONTACT
 @app.route('/contact',  methods=['GET', 'POST'])
 def contact():
@@ -36,7 +37,7 @@ def requires_admin(route_func):
             return route_func()
         else:
             return redirect("/unauthorized")
-    
+
     wrapper.__name__ = route_func.__name__
 
     return wrapper
@@ -46,18 +47,18 @@ def requires_admin(route_func):
 def login():
     if request.method == 'GET':
         return render_template("/admin_login/login.html")
-    
+
     username = request.form.get("username")
     password = request.form.get("password")
-    
+
     if username == 'admin' and password == 'admin':
-        session["username"] = username 
-        session["admin"] = "true" 
+        session["username"] = username
+        session["admin"] = "true"
         return redirect("/adminlogin")
 
     else:
         return render_template(
-            "/admin_login/login.html", 
+            "/admin_login/login.html",
             error="¡Invalid user or password!",
             username=username,
             password=password
@@ -83,7 +84,7 @@ def logout():
 @app.route("/home/<hash_image>", methods=["GET"])
 def only_image(hash_image):
     image_from_db = db_items.find_one({"sha256": hash_image})
-    
+
     if image_from_db:
         return send_file(io.BytesIO(image_from_db['image_data']), 'image/jpg')
     if not image_from_db:
@@ -96,26 +97,26 @@ def only_image(hash_image):
 def galery():
     if request.method == 'GET':
         return render_template('upload.html')
-    
+
     origin_name = request.files['file'].filename
     data = request.files['file'].stream.read()
     hash_image = sha256(data).hexdigest()
-    description = request.form['description'] 
+    description = request.form['description']
     price = request.form['price']
-    
+
     image_from_db = db_items.find_one({"sha256": hash_image})
-    
+
     if not image_from_db:
         db_items.insert_one({
             'name': origin_name,
             'sha256': hash_image,
             'image_data': data,
-            'description': description,            
+            'description': description,           
             'price': price,
         })
-        
+
     images_list = [doc for doc in db_items.find()]
-    return render_template("home.html",img_ids = [img['sha256'] for img in images_list])
+    return render_template("home.html", img_ids = [img['sha256'] for img in images_list])
 
 
 if __name__ == "__main__":
