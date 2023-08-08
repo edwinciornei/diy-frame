@@ -1,11 +1,27 @@
 from flask import Flask, render_template, request, redirect, session, send_file
+from flask_mail import Mail, Message
 from pymongo import MongoClient
 from hashlib import sha256
+import configparser
 import io
+import os
 
 
+config = configparser.ConfigParser()
+config.read('config/config.cfg')
 app = Flask(__name__)
 app.secret_key = "secret"
+
+app.config['MAIL_SERVER'] = 'smtp.office365.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+app.config['MAIL_USERNAME'] = 'diyframe@outlook.com'
+app.config['MAIL_PASSWORD'] = config['Mail']['MAIL_PASSWORD']
+app.config['MAIL_DEFAULT_SENDER'] = 'diyframe@outlook.com'
+app.config['MAIL_ASCII_ATTACHMENTS'] = False
+
+mail = Mail(app)
 
 # MongoDB connection
 cl = MongoClient('mongodb://localhost:27017')
@@ -23,9 +39,25 @@ def home():
 # CONTACT
 @app.route('/contact',  methods=['GET', 'POST'])
 def contact():
-    subject = request.args.get('subject', '')
+    subject_param = request.args.get('subject', '')
     price = request.args.get('price', '')
-    return render_template('contact.html', subject=subject, price=price)
+    if request.method == 'POST':
+        name = request.form['name']
+        email = request.form['email']
+        message_body = request.form['subject']
+        
+        msg = Message("HEY THERE", recipients=[email])
+        msg.body = f'From: {name} <{email}>\n{message_body}'
+        
+        try:
+            mail.send(msg)
+        except Exception as e:
+            return f'Error: {e}'
+        
+        return "Email sent successfully"
+
+
+    return render_template('contact.html', subject=subject_param, price=price)
 
 
 # WRAPPER
@@ -43,6 +75,7 @@ def requires_admin(route_func):
     return wrapper
 
 
+# ADMIN LOGIN
 @app.route("/adminlogin", methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
@@ -81,7 +114,8 @@ def logout():
     return redirect("/adminlogin")
 
 
-@app.route("/home/<hash_image>", methods=["GET"])
+# READ
+@app.route("/home/<hash_image>", methods=['GET'])
 def only_image(hash_image):
     image_from_db = db_items.find_one({"sha256": hash_image})
 

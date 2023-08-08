@@ -9,7 +9,7 @@ body {
 #del-button {
     position: relative;
     left: 40px;
-    color: #007bff;
+    color: #331427;
     text-decoration: none;
 }
 
@@ -21,7 +21,7 @@ body {
     padding: 2%;
     border: 1px solid grey;
     border-radius: 5px;
-    box-shadow: 2px 2px 2px black;
+    box-shadow: 2px 2px 2px #60495e;
 }
 
 .in-out-up {
@@ -34,14 +34,14 @@ body {
     width: 40%;
 }
 
-/* Added this to make 'name' and 'email' sit on the same line */
+
 .input-row {
     display: flex;
     justify-content: space-between;
 }
 
 .input-group {
-    width: 48%; /* Adjusted to make space for two input groups side by side */
+    width: 48%;
     margin-bottom: 10px;
 }
 
@@ -75,20 +75,9 @@ body {
     width: 100%;
     height: auto;
     object-fit: cover;
-    max-height: 190px;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
-}
-
-.image-description, 
-.image-price {
-    margin-top: 10px;
-    text-align: left;
-    padding: 5px 0;
-}
-
-.image-description {
-    font-size: 1em;
+    max-height: 200px;
+    border-top-left-radius: 0.15rem;
+    border-top-right-radius: 0.15rem;
 }
 
 .image-price {
@@ -97,13 +86,15 @@ body {
 }
 
 .card {
+    width: 100%;
+    height: fit-content;
     border: 1px solid grey;
     border-radius: 5px;
-    box-shadow: 2px 2px 2px black;
+    box-shadow: 2px 2px 2px #60495e;
 }
 
 input[type="submit"] {
-    background-color: #007bff;
+    background-color: #331427;
     color: #fff;
     border: none;
     padding: 5px 15px;
@@ -113,5 +104,6 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #331427;
 }
+
