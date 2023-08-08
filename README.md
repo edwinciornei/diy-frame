@@ -1,6 +1,6 @@
-# Garage Sale Web Application 
+# Handcrafted Picture Frames by Violette
 
-A simple web application built with Flask and MongoDB for displaying and managing items in a garage sale. Users can view items, admins can upload new items, and interested buyers can contact the seller.
+A simple web application built with Flask and MongoDB designed to showcase and sell handcrafted picture frames made with love and creativity by my mother-in-law, . Users can view items, admins can upload new items, and interested buyers can contact the seller.
 
 ## Features:
 
