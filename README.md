@@ -16,7 +16,7 @@ A simple web application built with Flask and MongoDB designed to showcase and s
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/edwinciornei/garage-sale-app.git
+   git clone https://github.com/edwinciornei/diy-frame.git
    ```
 
 2. **Install Dependencies**:  
