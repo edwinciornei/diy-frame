@@ -13,7 +13,8 @@ body {
     text-decoration: none;
 }
 
-.in-out-up, .contact-form {
+.in-out-up,
+.contact-form {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -22,10 +23,10 @@ body {
     border: 1px solid grey;
     border-radius: 5px;
     box-shadow: 2px 2px 2px #60495e;
+    text-align: left;
 }
 
 .in-out-up {
-    text-align: left;
     width: 25%;
     background-color: #fff;
 }
@@ -34,27 +35,32 @@ body {
     width: 40%;
 }
 
-
 .input-row {
     display: flex;
     justify-content: space-between;
 }
 
+.input-group,
+.input-group-price {
+    margin-bottom: 10px;
+}
+
 .input-group {
     width: 48%;
-    margin-bottom: 10px;
 }
 
 .input-group-price {
     width: 5%;
-    margin-bottom: 10px;
 }
 
 .input-group label,
 .input-group input,
-.input-group textarea {
+.input-group textarea,
+.input-group textarea,
+input[type="submit"] {
     display: block;
     margin-bottom: 5px;
+    border-radius: 5px;
 }
 
 .input-group input,
@@ -62,7 +68,6 @@ body {
     width: 100%;
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 5px;
     font-size: 16px;
 }
 
@@ -89,7 +94,6 @@ body {
     width: 100%;
     height: fit-content;
     border: 1px solid grey;
-    border-radius: 5px;
     box-shadow: 2px 2px 2px #60495e;
 }
 
@@ -98,7 +102,6 @@ input[type="submit"] {
     color: #fff;
     border: none;
     padding: 5px 15px;
-    border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }
@@ -106,4 +109,3 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #331427;
 }
-

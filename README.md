@@ -1,4 +1,4 @@
-# Handcrafted Picture Frames by Violette
+# Handcrafted Picture Frames
 
 A simple web application built with Flask and MongoDB designed to showcase and sell handcrafted picture frames made with love and creativity by my mother-in-law. Users can view items, admins can upload new items, and interested buyers can contact the seller.
 
